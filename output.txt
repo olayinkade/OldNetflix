@@ -1,0 +1,390 @@
+ final test
+
+ lines beginning with a hashtag are comments
+ and are simply echoed to the output.
+
+ first, let's acquire some movies
+
+Name Gone with the Wind Quantity 2 was added
+Name American Sniper Quantity 1 was added
+Name The Imitation Game Quantity 2 was added
+Name The Godfather Quantity 2 was added
+Name Frozen Quantity 1 was added
+Name Throw Mama from the Train Quantity 4 was added
+Name The Expendables Quantity 1 was added
+Name Talladega Nights Quantity 2 was added
+
+ Now add some customers
+
+Name Joe Barnes Maxloan 4 was added
+Name Li Kim Maxloan 5 was added
+Name Helene Perrault Maxloan 6 was added
+Name Hadi Hemmadi Maxloan 2 was added
+Name Merrill Stubing Maxloan 2 was added
+Name Mike Domaratzki Maxloan 1 was added
+Name Gord Boyer Maxloan 1 was added
+ ACN error - customer already exists.
+ERROR : Mike Domaratzki Already a netflix subscriber
+
+ ADD requests. These should result in loans.
+
+American Sniper was added to Joe Barnes wish list
+Loaned American Sniper to Joe Barnes
+Gone with the Wind was added to Joe Barnes wish list
+Loaned Gone with the Wind to Joe Barnes
+The Imitation Game was added to Helene Perrault wish list
+Loaned The Imitation Game to Helene Perrault
+Frozen was added to Helene Perrault wish list
+Loaned Frozen to Helene Perrault
+The Imitation Game was added to Joe Barnes wish list
+Loaned The Imitation Game to Joe Barnes
+Throw Mama from the Train was added to Hadi Hemmadi wish list
+Loaned Throw Mama from the Train to Hadi Hemmadi
+The Godfather was added to Hadi Hemmadi wish list
+Loaned The Godfather to Hadi Hemmadi
+Talladega Nights was added to Joe Barnes wish list
+Loaned Talladega Nights to Joe Barnes
+Throw Mama from the Train was added to Helene Perrault wish list
+Loaned Throw Mama from the Train to Helene Perrault
+
+ error -- requeue. (has)
+ERROR : Helene Perrault already has Frozen  on their Loanlist
+
+ ADD requests. These should NOT result in loans (movie unavailable).
+
+American Sniper was added to Li Kim wish list
+Frozen was added to Merrill Stubing wish list
+The Imitation Game was added to Mike Domaratzki wish list
+The Imitation Game was added to Li Kim wish list
+ error -- requeue (waiting)
+ERROR : Merrill Stubing already has Frozen on their wishlist
+
+ ADD requests. These should NOT result in loans (customer has max DVDs).
+
+The Expendables was added to Joe Barnes wish list
+ERROR :Joe Barnes loan list is full
+
+ ADD requests. These should result in errors (no such movie or customer).
+
+ERROR : Big not present on NetFlix list or might be mispelled
+ERROR : Billy Preston is not a Customer
+
+  REM requests. These should be successful.
+
+American Sniper was deleted from Li Kim wishlist
+
+ REM requests. These should result in errors.
+
+ERROR: American Sniper not in Helene Perrault wish List
+ERROR: Big not present in Data base or might be mispelled
+
+ RET requests. These should result in errors (movie not loaned to customer).
+
+ERROR: American Sniper not in Helene Perrault Loan List
+
+ RET works -- sends to other, random selection
+
+Joe Barnes has returned The Imitation Game and it was reloaned to 
+Loaned The Imitation Game to Li Kim
+
+ RET works -- sends to Merrill Stubing
+
+Helene Perrault has returned Frozen and it was reloaned to 
+Loaned Frozen to Merrill Stubing
+
+ LOS - error can't find movie
+
+ERROR : Big not present in netflix database or might be mispelled
+
+ LOST - error -- doesn't have movie
+
+ERROR : Hadi Hemmadi doesn't have The Imitation Game in loan list
+
+ LOST - ok
+Frozen was lost by Merrill Stubing and is expected to pay extra to replace
+Frozen was added to Gord Boyer wish list
+ RCN - not ok
+ERROR : Joe Barnes Loan list not empty 
+ RCN  - ok
+Merrill Stubing is no more a subscriber
+ Do processing to remove everyone.
+ERROR: The Imitation Game not in Mike Domaratzki Loan List
+Mike Domaratzki is no more a subscriber
+ERROR: The Expendables not in Joe Barnes Loan List
+Joe Barnes has returned Talladega Nights and it was reloaned to 
+Joe Barnes has returned Gone with the Wind and it was reloaned to 
+Joe Barnes has returned American Sniper and it was reloaned to 
+Joe Barnes is no more a subscriber
+Li Kim has returned The Imitation Game and it was reloaned to 
+Li Kim is no more a subscriber
+Helene Perrault has returned The Imitation Game and it was reloaned to 
+Helene Perrault has returned Throw Mama from the Train and it was reloaned to 
+Helene Perrault is no more a subscriber
+Hadi Hemmadi has returned The Godfather and it was reloaned to 
+Hadi Hemmadi has returned Throw Mama from the Train and it was reloaned to 
+Hadi Hemmadi is no more a subscriber
+Gord Boyer is no more a subscriber
+ bunch of invalid stuff - no customer anymore
+ERROR: Helene Perrault doesnt exist
+Name Gord Boyer Maxloan 0 not a customer
+ERROR: Merrill Stubing doesnt exist
+ERROR: Li Kim Customer doesnt exist
+ ACN customers again. they're fickle or something.
+Name Joe Barnes Maxloan 2 was added
+Name Li Kim Maxloan 2 was added
+Name Helene Perrault Maxloan 2 was added
+Name Hadi Hemmadi Maxloan 2 was added
+Name Merrill Stubing Maxloan 2 was added
+Name Mike Domaratzki Maxloan 2 was added
+Name Gord Boyer Maxloan 2 was added
+## add a bunch of movies
+Gone with the Wind was added to Hadi Hemmadi wish list
+Loaned Gone with the Wind to Hadi Hemmadi
+American Sniper was added to Hadi Hemmadi wish list
+Loaned American Sniper to Hadi Hemmadi
+The Imitation Game was added to Hadi Hemmadi wish list
+ERROR :Hadi Hemmadi loan list is full
+The Godfather was added to Hadi Hemmadi wish list
+ERROR :Hadi Hemmadi loan list is full
+Frozen was added to Hadi Hemmadi wish list
+ERROR :Hadi Hemmadi loan list is full
+Throw Mama from the Train was added to Hadi Hemmadi wish list
+ERROR :Hadi Hemmadi loan list is full
+The Expendables was added to Hadi Hemmadi wish list
+ERROR :Hadi Hemmadi loan list is full
+Talladega Nights was added to Hadi Hemmadi wish list
+ERROR :Hadi Hemmadi loan list is full
+Gone with the Wind was added to Joe Barnes wish list
+Loaned Gone with the Wind to Joe Barnes
+American Sniper was added to Joe Barnes wish list
+The Imitation Game was added to Joe Barnes wish list
+Loaned The Imitation Game to Joe Barnes
+The Godfather was added to Joe Barnes wish list
+ERROR :Joe Barnes loan list is full
+Frozen was added to Joe Barnes wish list
+ERROR :Joe Barnes loan list is full
+Throw Mama from the Train was added to Joe Barnes wish list
+ERROR :Joe Barnes loan list is full
+The Expendables was added to Joe Barnes wish list
+ERROR :Joe Barnes loan list is full
+Talladega Nights was added to Joe Barnes wish list
+ERROR :Joe Barnes loan list is full
+Gone with the Wind was added to Helene Perrault wish list
+American Sniper was added to Helene Perrault wish list
+The Imitation Game was added to Helene Perrault wish list
+Loaned The Imitation Game to Helene Perrault
+The Godfather was added to Helene Perrault wish list
+Loaned The Godfather to Helene Perrault
+Frozen was added to Helene Perrault wish list
+ERROR :Helene Perrault loan list is full
+Throw Mama from the Train was added to Helene Perrault wish list
+ERROR :Helene Perrault loan list is full
+The Expendables was added to Helene Perrault wish list
+ERROR :Helene Perrault loan list is full
+Talladega Nights was added to Helene Perrault wish list
+ERROR :Helene Perrault loan list is full
+Gone with the Wind was added to Li Kim wish list
+American Sniper was added to Li Kim wish list
+The Imitation Game was added to Li Kim wish list
+The Godfather was added to Li Kim wish list
+Loaned The Godfather to Li Kim
+Frozen was added to Li Kim wish list
+Throw Mama from the Train was added to Li Kim wish list
+Loaned Throw Mama from the Train to Li Kim
+The Expendables was added to Li Kim wish list
+ERROR :Li Kim loan list is full
+Talladega Nights was added to Li Kim wish list
+ERROR :Li Kim loan list is full
+Gone with the Wind was added to Merrill Stubing wish list
+American Sniper was added to Merrill Stubing wish list
+The Imitation Game was added to Merrill Stubing wish list
+The Godfather was added to Merrill Stubing wish list
+Frozen was added to Merrill Stubing wish list
+Throw Mama from the Train was added to Merrill Stubing wish list
+Loaned Throw Mama from the Train to Merrill Stubing
+The Expendables was added to Merrill Stubing wish list
+Loaned The Expendables to Merrill Stubing
+Talladega Nights was added to Merrill Stubing wish list
+ERROR :Merrill Stubing loan list is full
+Gone with the Wind was added to Mike Domaratzki wish list
+American Sniper was added to Mike Domaratzki wish list
+The Imitation Game was added to Mike Domaratzki wish list
+The Godfather was added to Mike Domaratzki wish list
+Frozen was added to Mike Domaratzki wish list
+Throw Mama from the Train was added to Mike Domaratzki wish list
+Loaned Throw Mama from the Train to Mike Domaratzki
+The Expendables was added to Mike Domaratzki wish list
+Talladega Nights was added to Mike Domaratzki wish list
+Loaned Talladega Nights to Mike Domaratzki
+Gone with the Wind was added to Gord Boyer wish list
+American Sniper was added to Gord Boyer wish list
+The Imitation Game was added to Gord Boyer wish list
+The Godfather was added to Gord Boyer wish list
+Frozen was added to Gord Boyer wish list
+Throw Mama from the Train was added to Gord Boyer wish list
+Loaned Throw Mama from the Train to Gord Boyer
+The Expendables was added to Gord Boyer wish list
+Talladega Nights was added to Gord Boyer wish list
+Loaned Talladega Nights to Gord Boyer
+ERROR: Gone with the Wind not in Gord Boyer Loan List
+ERROR: American Sniper not in Gord Boyer Loan List
+ERROR: The Imitation Game not in Gord Boyer Loan List
+ERROR: The Godfather not in Gord Boyer Loan List
+ERROR: Frozen not in Gord Boyer Loan List
+Gord Boyer has returned Throw Mama from the Train and it was reloaned to 
+Loaned Throw Mama from the Train to Joe Barnes
+ERROR: The Expendables not in Gord Boyer Loan List
+Gord Boyer has returned Talladega Nights and it was reloaned to 
+Loaned Talladega Nights to Joe Barnes
+ERROR: Gone with the Wind not in Mike Domaratzki Loan List
+ERROR: American Sniper not in Mike Domaratzki Loan List
+ERROR: The Imitation Game not in Mike Domaratzki Loan List
+ERROR: The Godfather not in Mike Domaratzki Loan List
+ERROR: Frozen not in Mike Domaratzki Loan List
+Mike Domaratzki has returned Throw Mama from the Train and it was reloaned to 
+Loaned Throw Mama from the Train to Hadi Hemmadi
+ERROR: The Expendables not in Mike Domaratzki Loan List
+Mike Domaratzki has returned Talladega Nights and it was reloaned to 
+Loaned Talladega Nights to Merrill Stubing
+ERROR: Gone with the Wind not in Merrill Stubing Loan List
+ERROR: American Sniper not in Merrill Stubing Loan List
+ERROR: The Imitation Game not in Merrill Stubing Loan List
+ERROR: The Godfather not in Merrill Stubing Loan List
+ERROR: Frozen not in Merrill Stubing Loan List
+Merrill Stubing has returned Throw Mama from the Train and it was reloaned to 
+Loaned Throw Mama from the Train to Helene Perrault
+Merrill Stubing has returned The Expendables and it was reloaned to 
+Loaned The Expendables to Mike Domaratzki
+Merrill Stubing has returned Talladega Nights and it was reloaned to 
+Loaned Talladega Nights to Hadi Hemmadi
+ERROR: Gone with the Wind not in Li Kim Loan List
+ERROR: American Sniper not in Li Kim Loan List
+ERROR: The Imitation Game not in Li Kim Loan List
+Li Kim has returned The Godfather and it was reloaned to 
+Loaned The Godfather to Merrill Stubing
+ERROR: Frozen not in Li Kim Loan List
+Li Kim has returned Throw Mama from the Train and it was reloaned to 
+ERROR: The Expendables not in Li Kim Loan List
+ERROR: Talladega Nights not in Li Kim Loan List
+ERROR: Gone with the Wind not in Helene Perrault Loan List
+ERROR: American Sniper not in Helene Perrault Loan List
+Helene Perrault has returned The Imitation Game and it was reloaned to 
+Loaned The Imitation Game to Hadi Hemmadi
+Helene Perrault has returned The Godfather and it was reloaned to 
+Loaned The Godfather to Joe Barnes
+ERROR: Frozen not in Helene Perrault Loan List
+Helene Perrault has returned Throw Mama from the Train and it was reloaned to 
+ERROR: The Expendables not in Helene Perrault Loan List
+ERROR: Talladega Nights not in Helene Perrault Loan List
+Joe Barnes has returned Gone with the Wind and it was reloaned to 
+Loaned Gone with the Wind to Helene Perrault
+ERROR: American Sniper not in Joe Barnes Loan List
+Joe Barnes has returned The Imitation Game and it was reloaned to 
+Loaned The Imitation Game to Mike Domaratzki
+Joe Barnes has returned The Godfather and it was reloaned to 
+Loaned The Godfather to Gord Boyer
+ERROR: Frozen not in Joe Barnes Loan List
+Joe Barnes has returned Throw Mama from the Train and it was reloaned to 
+ERROR: The Expendables not in Joe Barnes Loan List
+Joe Barnes has returned Talladega Nights and it was reloaned to 
+Loaned Talladega Nights to Li Kim
+Netflix Customer List
+
+
+Gord Boyer
+-----------
+DVDs ON LOAN
+-----------------
+The Godfather
+
+QUEUE
+----------
+Gone with the Wind
+American Sniper
+The Imitation Game
+Frozen
+The Expendables
+
+Hadi Hemmadi
+-----------
+DVDs ON LOAN
+-----------------
+American Sniper
+Gone with the Wind
+Talladega Nights
+The Imitation Game
+Throw Mama from the Train
+
+QUEUE
+----------
+The Godfather
+Frozen
+The Expendables
+
+Helene Perrault
+-----------
+DVDs ON LOAN
+-----------------
+Gone with the Wind
+
+QUEUE
+----------
+American Sniper
+Frozen
+The Expendables
+Talladega Nights
+
+Joe Barnes
+-----------
+DVDs ON LOAN
+-----------------
+
+QUEUE
+----------
+American Sniper
+Frozen
+The Expendables
+
+Li Kim
+-----------
+DVDs ON LOAN
+-----------------
+Talladega Nights
+
+QUEUE
+----------
+Gone with the Wind
+American Sniper
+The Imitation Game
+Frozen
+The Expendables
+
+Merrill Stubing
+-----------
+DVDs ON LOAN
+-----------------
+The Godfather
+
+QUEUE
+----------
+Gone with the Wind
+American Sniper
+The Imitation Game
+Frozen
+
+Mike Domaratzki
+-----------
+DVDs ON LOAN
+-----------------
+The Expendables
+The Imitation Game
+
+QUEUE
+----------
+Gone with the Wind
+American Sniper
+The Godfather
+Frozen
+
+
+End of processing.
